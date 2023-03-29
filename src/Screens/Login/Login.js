@@ -11,7 +11,7 @@ const Login = ({navigation}) => {
   return (
     <View style={{ flex: 1, justifyContent: 'center' }}>
        <Image
-        style={{width: 40, height: 40}}
+        style={{width: 40, height: 40,alignSelf:'center'}}
       source={require('../../Assets/Images/loginLove.png')}
       />
       <Text style={styles.titleText}>Lets Chat</Text>
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
   },
   titleText: {
+    textAlign:'center',
     fontSize: 50,
     color:'black',
     fontWeight: 'bold',

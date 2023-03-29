@@ -7,7 +7,7 @@ import { Dimensions } from 'react-native';
 const LoginForm = ({navigation}) => {
  const [number,setNumber]=useState()
     const onPress = () => {
-
+      navigation.navigate('Home')
       };
 
 
