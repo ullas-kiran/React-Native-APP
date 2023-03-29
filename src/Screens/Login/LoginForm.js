@@ -29,7 +29,7 @@ const LoginForm = ({navigation}) => {
         onChangeText={onPress}
         value={number}
         placeholder="email"
-        keyboardType="numeric"
+        keyboardType="default"
       />
    <TextInput
    placeholderTextColor={'red'}
@@ -37,7 +37,7 @@ const LoginForm = ({navigation}) => {
         onChangeText={onPress}
         value={number}
         placeholder="password"
-        keyboardType="numeric"
+        keyboardType="default"
       />
 
 <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     button: {
       alignItems: 'center',
       borderRadius:10,
-      backgroundColor: '#DDDDDD',
+      backgroundColor: '#FF597B',
       paddingHorizontal:50,
       paddingVertical:20,
       justifyContent:'center',

@@ -9,7 +9,7 @@ const Login = ({navigation}) => {
   };
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
+    <View style={{ flex: 1, justifyContent: 'center',marginTop:40 }}>
        <Image
         style={{width: 40, height: 40,alignSelf:'center'}}
       source={require('../../Assets/Images/loginLove.png')}
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   button: {
     alignItems: 'center',
     borderRadius:10,
-    backgroundColor: '#DDDDDD',
+    backgroundColor: '#FF597B',
     paddingHorizontal:50,
     paddingVertical:20,
     justifyContent:'center',
