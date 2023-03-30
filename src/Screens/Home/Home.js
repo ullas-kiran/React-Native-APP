@@ -30,6 +30,7 @@ const urlImageDetails=[
                 )
             }}
             onSwiped={(cardIndex) => {console.log(cardIndex)}}
+            infinite
             onSwipedAll={() => {console.log('onSwipedAll')}}
             cardIndex={0}
             backgroundColor={'#4FD0E9'}

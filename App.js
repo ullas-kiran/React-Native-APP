@@ -15,10 +15,25 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
   <NavigationContainer>
-    <Stack.Navigator  screenOptions={{headerShown: false}}>
-      <Stack.Screen  name="Login" component={Login} />
-      <Stack.Screen  name="LoginForm" component={LoginForm} />
-      <Stack.Screen  name="Home" component={Home} />
+    <Stack.Navigator>
+      <Stack.Screen   options={{
+              headerShown: false,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }} name="Login" component={Login} />
+      <Stack.Screen   options={{
+              headerShown: false,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }} name="LoginForm" component={LoginForm} />
+      <Stack.Screen   options={{
+              headerShown: false,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }}  name="Home" component={Home} />
     </Stack.Navigator>
   </NavigationContainer>
   );
