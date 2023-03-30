@@ -1,5 +1,5 @@
 import { useState,useEffect } from 'react';
-import { View, Text,StyleSheet,Image,TouchableOpacity,ActivityIndicator } from 'react-native'
+import { View, Text,StyleSheet,Image,TouchableOpacity,ActivityIndicator,Linking } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,9 +15,9 @@ const Login = ({navigation}) => {
   const getUser = async () => {
     try {
       setLoading(true);
-      const response = await fetch('https://3d65-115-246-244-26.in.ngrok.io/auth');
-      const json = await response.json();
-      console.log(json)
+      const response = await fetch('https://57c0-115-246-244-26.in.ngrok.io/auth/');
+      console.log(response.url)
+      const json = await Linking.openURL(response.url)
       setData(json);
     } catch (error) {
       console.error(error);

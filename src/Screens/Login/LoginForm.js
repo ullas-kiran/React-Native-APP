@@ -1,21 +1,28 @@
-import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,BackHandler,Alert } from 'react-native'
+import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,BackHandler,Alert,KeyboardAvoidingView } from 'react-native'
 import { useState,useEffect } from 'react';
-
+import LinearGradient from 'react-native-linear-gradient';
 import { Dimensions } from 'react-native';
 
 
 const LoginForm = ({navigation}) => {
  const [number,setNumber]=useState()
+ const [focusInput,setFocusInput]=useState(true)
     const onPress = () => {
       navigation.navigate('Home')
       };
 
+const onChangeText=(number)=>{
+  setNumber(number)
+}
 
+const onPressContinue=()=>{
+
+}
 
     
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center' }}>
+    <View style={{ flex: 1}}>
     <Image
      style={{width: 40, height: 40,alignSelf:'center'}}
    source={require('../../Assets/Images/loginLove.png')}
@@ -23,26 +30,32 @@ const LoginForm = ({navigation}) => {
    <Text style={styles.titleText}>Lets Chat</Text>
    {/* <Text numberOfLines={5} style={styles.titleParagraph}>People with same intrest will match Here with our algorithm</Text> */}
 
-   <TextInput
-   placeholderTextColor={'red'}
-        style={styles.input}
-        onChangeText={onPress}
-        value={number}
-        placeholder="email"
-        keyboardType="default"
-      />
-   <TextInput
-   placeholderTextColor={'red'}
-        style={styles.input}
-        onChangeText={onPress}
-        value={number}
-        placeholder="password"
-        keyboardType="default"
-      />
+<KeyboardAvoidingView
+keyboardVerticalOffset={50}
+behavior='padding'
+style={{flex:1,alignItems:'center',padding:10}}
+>
+<Text style={{marginBottom:50,marginTop:50,fontSize:15,color:'black'}}>{"please input your mobile number"}</Text>
+<View style={{flexDirection:'row',paddingHorizontal:12,borderRadius:10,backgroundColor:'white',alignItems:'center',}}>
+  <View style={{flexDirection:'row',alignItems:'center',justifyContent:'center'}}>
+    <Text style={{color:'black'}}>{"+91 |"}</Text>
+  </View>
+  <TextInput placeholder='number' keyboardType='numeric' 
+  style={{flex:1,height:50,marginLeft:5,color:'black'}}
+  value='234' onChangeText={onChangeText} secureTextEntry={false}/>
 
-<TouchableOpacity style={styles.button} onPress={onPress}>
-        <Text style={{fontSize:20}}>Lets Chat</Text>
+</View>
+<View style={{flex:1,justifyContent:'flex-end',marginBottom:50,alignItems:'center'}}>
+ <TouchableOpacity  onPress={onPressContinue}>
+  <View style={{width:150,height:50,borderRadius:10,alignItems:'center',justifyContent:'center',backgroundColor:'#244DB7'}}>
+
+      <Text style={{fontSize:20,alignItems:'center'}}>Lets Chat</Text>
+  </View>
       </TouchableOpacity>
+</View>
+
+</KeyboardAvoidingView>
+
  </View>
   )
 }
