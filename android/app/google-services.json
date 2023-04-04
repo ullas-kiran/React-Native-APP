@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843672720732",
+    "project_id": "react-native-fb98d",
+    "storage_bucket": "react-native-fb98d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843672720732:android:2c68b61bb12269c7149d99",
+        "android_client_info": {
+          "package_name": "com.awesomedating"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843672720732-d209otri413ptgvsjv414hng25spnov5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv1CyzOpwujJ_I8nzaE2ULqVKyhcqTWxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843672720732-d209otri413ptgvsjv414hng25spnov5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

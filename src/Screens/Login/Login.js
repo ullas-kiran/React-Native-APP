@@ -3,8 +3,19 @@ import { View, Text,StyleSheet,Image,TouchableOpacity,ActivityIndicator,Linking 
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import {GoogleAuthProvider, signInWithCredential,getAuth} from 'firebase/auth'
+import { initializeApp } from "firebase/app";
+
+GoogleSignin.configure({
+  webClientId: '843672720732-qi6grqq67ds7gp0imjhqhtgtu8s6la4m.apps.googleusercontent.com',
+});
+
+
 
 const Login = ({navigation}) => {
+
+
   const [data, setData] = useState([]);
   const [isLoading, setLoading] = useState(false);
 
@@ -13,20 +24,48 @@ const Login = ({navigation}) => {
   };
 
   const getUser = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('https://57c0-115-246-244-26.in.ngrok.io/auth/');
-      console.log(response.url)
-      const json = await Linking.openURL(response.url)
-      setData(json);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setLoading(false);
+    try{
+    await GoogleSignin.signOut();
+    await GoogleSignin.hasPlayServices(); // Check if Play Services are installed
+    const {user} = await GoogleSignin.signIn(); // Start the sign-in process
+    console.log(user); // Do something with the user info
+    if(user){
+      try {
+        const response = await fetch("https://vingle-taupe.vercel.app/auth/user/google/signin", {
+          method: "POST", 
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            "user":{
+            "name":"vlmna",
+            "email":"vlmndA@gmail.com",
+            "photo":"sdafasfda"
+            }
+        }),
+        });
+    
+        const result = await response.json();
+        console.log("Success:", result);
+        navigation.navigate('LoginForm')
+      } catch (error) {
+        console.error("Error:", error);
+      }
     }
-  };
-
  
+  } catch (error) {
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      // user cancelled the login flow
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      // operation (e.g. sign in) is in progress already
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      // play services not available or outdated
+    } else {
+      // some other error happened
+    }
+     
+  }
+}
 
   return (
     <View style={{ flex: 1, justifyContent: 'center'}}>

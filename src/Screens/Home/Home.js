@@ -26,6 +26,7 @@ const urlImageDetails=[
           }}
 />
                         <Text style={styles.text}>{card.title}</Text>
+                        <Text>{"description"}</Text>
                     </View>
                 )
             }}
@@ -50,8 +51,8 @@ const styles = StyleSheet.create({
     card: {
       flex: 1,
       borderRadius: 4,
-      borderWidth: 2,
-      borderColor: "#E8E8E8",
+      // borderWidth: 2,
+      // borderColor: "#E8E8E8",
       justifyContent: "center",
       backgroundColor: "white"
     },

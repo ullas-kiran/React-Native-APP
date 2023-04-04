@@ -5,6 +5,7 @@ import { View, Text,StyleSheet } from 'react-native';
 import Login from './src/Screens/Login/Login';
 import LoginForm from './src/Screens/Login/LoginForm';
 import Home from './src/Screens/Home/Home';
+import OtpLogin from './src/Screens/Login/OtpLogin';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -28,6 +29,12 @@ function App() {
               animationTypeForReplace: 'push',
               animation:'slide_from_right'
             }} name="LoginForm" component={LoginForm} />
+      <Stack.Screen   options={{
+              headerShown: false,
+              presentation: 'modal',
+              animationTypeForReplace: 'push',
+              animation:'slide_from_right'
+            }} name="OtpLogin" component={OtpLogin} />
       <Stack.Screen   options={{
               headerShown: false,
               presentation: 'modal',
