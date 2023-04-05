@@ -43,10 +43,28 @@ const onChangePhone=(number)=>{
   setPhoneNumber(number)
 }
 
-const onPressContinue=()=>{
-  if(phoneNumber){
+const onPressContinue= async()=>{
+  try {
+    const response = await fetch("https://vingle-taupe.vercel.app/auth/signin/mobile", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "mobile":phoneNumber
+    }),
+    });
+
+    const {data:{accessToken}} = await response.json();
+    console.log("accessToken:", accessToken);
+    if(phoneNumber)
     navigation.navigate('OtpLogin')
+  } catch (error) {
+    console.error("Error:", error);
   }
+  
+    
+  
 }
 
 const onChangeFocus=()=>{

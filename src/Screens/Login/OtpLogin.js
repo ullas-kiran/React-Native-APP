@@ -94,6 +94,13 @@ const OtpLogin = ({navigation}) => {
                 }
                 
             </View>
+            <View style={styles.viewButton}>
+            <TouchableOpacity >
+     <View style={styles.btnContinue}>
+      <Text style={styles.textContinue} >Continue</Text>
+     </View>
+      </TouchableOpacity>
+      </View>
         </View>
 
         <View style={styles.bottomView}>
@@ -178,7 +185,24 @@ const styles = StyleSheet.create({
     textResend:{
         alignItems:'center',
         fontSize:15
-    }
+    },
+    viewButton:{
+      justifyContent:'flex-end',
+      marginTop:10,
+      alignItems:'center'
+     },
+     btnContinue:{
+      width:150,
+      height:50,
+      borderRadius:10,
+      alignItems:'center',
+      justifyContent:'center',
+      backgroundColor:'#D2576D'
+     },
+     textContinue:{
+      color:'#ffffff',
+      alignItems:'center'
+     },
 })
 
 export default OtpLogin
