@@ -77,7 +77,7 @@ const OtpLogin = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-         <LinearGradient style={{flex:1,justifyContent:'center'}}   locations={[100,100,0.6]} colors={['#C6B6EA', '#F5C9D9', '#FF72B638']} >
+    <LinearGradient style={{flex:1,justifyContent:'center'}}   locations={[100,100,0.6]} colors={['#C6B6EA', '#F5C9D9', '#FF72B638']} >
     <KeyboardAvoidingView
     keyboardVerticalOffset={50}
     behavior='padding'
