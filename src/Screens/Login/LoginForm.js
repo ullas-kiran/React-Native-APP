@@ -2,6 +2,8 @@ import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,Modal,KeyboardAv
 import { useState,useEffect, useRef } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { Dimensions } from 'react-native';
+import { phone_login } from '../../Api/user_api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Countries= [{
   "name": "Afghanistan",
@@ -45,18 +47,18 @@ const onChangePhone=(number)=>{
 
 const onPressContinue= async()=>{
   try {
-    const response = await fetch("https://vingle-taupe.vercel.app/auth/signin/mobile", {
-      method: "POST", 
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        "mobile":phoneNumber
-    }),
-    });
-
-    const {data:{accessToken}} = await response.json();
-    console.log("accessToken:", accessToken);
+    const {data:{data:{accessToken}}} = await phone_login({
+      mobile:phoneNumber
+    })
+    AsyncStorage.setItem('AccessToken', JSON.stringify(accessToken), (err)=> {
+      if(err){
+          console.log("an error");
+          throw err;
+      }
+      console.log("success");
+  }).catch((err)=> {
+      console.log("error is: " + err);
+  });
     if(phoneNumber)
     navigation.navigate('OtpLogin')
   } catch (error) {
@@ -78,6 +80,8 @@ const onChangeBlur=()=>{
 useEffect(()=>{
  textInput.focus()
 },[])
+
+
 
 const filterCountries=(value)=>{
   if(value){
@@ -142,7 +146,7 @@ let renderModal=()=>{
         <TouchableOpacity onPress={onShowHideModal}>
         
            <View style={styles.openDialogueView} >
-        <Text>{codeCountry + " |"}</Text>
+        <Text style={{color:'black'}}>{codeCountry + " |"}</Text>
       </View> 
        
         </TouchableOpacity>
@@ -205,6 +209,7 @@ const styles = StyleSheet.create({
    },
    phoneInputStyle:{
     marginLeft:5,
+    color:'black',
     flex:1,
     height:50,
    },

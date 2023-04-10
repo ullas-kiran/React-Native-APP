@@ -1,11 +1,12 @@
 import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,BackHandler,Alert,KeyboardAvoidingView } from 'react-native'
 import { useState,useEffect, useRef } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
+import { otp_verify } from '../../Api/user_api';
 
 const OtpLogin = ({navigation}) => {
     let textInput=useRef(null);
     let clockCall=null
-    const lengthInput=6;
+    const lengthInput=4;
     const defaultCountdown=30;
     const [internalVal,setInternalVal]=useState("");
     const [countdown,setCountdown]=useState(defaultCountdown);
@@ -35,9 +36,9 @@ const OtpLogin = ({navigation}) => {
 
     const onChangeText=(val)=>{
     setInternalVal(val)
-    if(val.length===lengthInput){
-      navigation.navigate('Home')
-    }
+    // if(val.length===lengthInput){
+    //   navigation.navigate('Home')
+    // }
     }
 
    const onResendOTP=()=>{
@@ -53,6 +54,21 @@ const OtpLogin = ({navigation}) => {
 
    const onChangeNumber=()=>{
      setInternalVal("")
+   }
+
+   const onPressContinue= async()=>{
+    try {
+      const data = await otp_verify({
+        otp:internalVal
+      })
+  
+  
+      console.log("internal:", data );
+      if(internalVal.length==lengthInput)
+      navigation.navigate('Home')
+    } catch (error) {
+      console.error("Error:", error);
+    }
    }
 
     useEffect(()=>{
@@ -95,7 +111,7 @@ const OtpLogin = ({navigation}) => {
                 
             </View>
             <View style={styles.viewButton}>
-            <TouchableOpacity >
+      <TouchableOpacity onPress={onPressContinue} >
      <View style={styles.btnContinue}>
       <Text style={styles.textContinue} >Continue</Text>
      </View>

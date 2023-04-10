@@ -6,6 +6,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import {GoogleAuthProvider, signInWithCredential,getAuth} from 'firebase/auth'
 import { initializeApp } from "firebase/app";
+import { user_google_login } from '../../Api/user_api';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 GoogleSignin.configure({
   webClientId: '843672720732-qi6grqq67ds7gp0imjhqhtgtu8s6la4m.apps.googleusercontent.com',
@@ -27,25 +29,19 @@ const Login = ({navigation}) => {
     try{
     await GoogleSignin.signOut();
     await GoogleSignin.hasPlayServices(); // Check if Play Services are installed
-    const {user} = await GoogleSignin.signIn(); // Start the sign-in process
+    const {user:{email,givenName,name,photo}} = await GoogleSignin.signIn(); // Start the sign-in process
     console.log(user); // Do something with the user info
     if(user){
       try {
-        const response = await fetch("https://vingle-taupe.vercel.app/auth/user/google/signin", {
-          method: "POST", 
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            "user":{
-            "name":"vlmna",
-            "email":"vlmndA@gmail.com",
-            "photo":"sdafasfda"
-            }
-        }),
-        });
+        const response = await user_google_login({
+          "user":{
+          "name":"zack",
+          "email":"devvlmna@gmail.com",
+          "photo":"dsfsdfsdfsdfsdfsdf"
+          }
+      })
     
-        const result = await response.json();
+        const result = await response;
         console.log("Success:", result);
         navigation.navigate('LoginForm')
       } catch (error) {
