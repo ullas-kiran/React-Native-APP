@@ -6,7 +6,7 @@ const UserName = ({navigation}) => {
 
   const onPressContinue= async()=>{
     if(name){
-      navigation.navigate('Home')
+      navigation.navigate('DateOfBirth')
     }
   }
 

@@ -3,7 +3,7 @@ import ApiManager from "./ApiManager";
 
 export const user_google_login= async (data) => {
     try{
-     const result=await ApiManager('auth/user/google/signin',{
+     const result=await ApiManager('/auth/signin/google',{
         method:'POST',
         headers:{
             'Content-Type':'application/json'

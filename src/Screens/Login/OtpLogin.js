@@ -63,9 +63,9 @@ const OtpLogin = ({navigation}) => {
       })
   
   
-      console.log("internal:", data );
-      if(internalVal.length==lengthInput)
-      navigation.navigate('Home')
+      console.log("internal:", data.status );
+      if(internalVal.length==lengthInput&&data.status=='200')
+      navigation.navigate('UserName')
     } catch (error) {
       console.error("Error:", error);
     }

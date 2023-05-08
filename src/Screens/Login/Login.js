@@ -29,27 +29,37 @@ const Login = ({navigation}) => {
     try{
     await GoogleSignin.signOut();
     await GoogleSignin.hasPlayServices(); // Check if Play Services are installed
-    const {user:{email,givenName,name,photo}} = await GoogleSignin.signIn(); // Start the sign-in process
-    console.log(user); // Do something with the user info
-    if(user){
+    const user = await GoogleSignin.signIn(); // Start the sign-in process
+    const {name,email,photo}=user.user;
+    // console.log("user",user.user); // Do something with the user info
+    if(user.user){
       try {
-        const response = await user_google_login({
-          "user":{
-          "name":"zack",
-          "email":"devvlmna@gmail.com",
-          "photo":"dsfsdfsdfsdfsdfsdf"
-          }
+        const response = await user_google_login({  
+            "user":{
+            "name":"zack",
+            "email":"devvlmna@gmail.com",
+            "photo":"dsfsdfsdfsdfsdfsdf"
+            }   
       })
+
+      // fetch('https://vingle-taupe.vercel.app/auth/signin/google',{method:'POST',body: JSON.stringify({"user":{
+      //   "name":"zack",
+      //   "email":"devvlmna@gmail.com",
+      //   "photo":"dsfsdfsdfsdfsdfsdf"
+      //   } })}).then((res)=>{
+      //   console.log("res",res)
+      // })
     
-        const result = await response;
-        console.log("Success:", result);
-        navigation.navigate('LoginForm')
+        // const result = await response;
+        console.log("Success:", response);
+        // navigation.navigate('LoginForm')
       } catch (error) {
-        console.error("Error:", error);
+        console.error("Error:1", error);
       }
     }
  
   } catch (error) {
+    console.error("Error2:", error);
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {
       // user cancelled the login flow
     } else if (error.code === statusCodes.IN_PROGRESS) {
