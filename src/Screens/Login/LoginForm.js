@@ -2,7 +2,7 @@ import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,Modal,KeyboardAv
 import { useState,useEffect, useRef } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { Dimensions } from 'react-native';
-import { phone_login } from '../../Api/user_api';
+import { login,user_google_login } from '../../Api/user_api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Countries= [{
@@ -22,7 +22,8 @@ const Countries= [{
 
 
 
-const LoginForm = ({navigation}) => {
+const LoginForm = ({ route, navigation}) => {
+ const { signUpMethod } = route.params;
  const defaultCodeCountry="+91";
  const defaultMaskCountry="902 901 901";
  const [phoneNumber,setPhoneNumber]=useState()
@@ -35,9 +36,6 @@ const LoginForm = ({navigation}) => {
   setModalVisible(!modalVisible)
  }
 
-    const onPress = () => {
-      navigation.navigate('Home')
-      };
 
 let textInput=useRef(null)
 
@@ -46,8 +44,27 @@ const onChangePhone=(number)=>{
 }
 
 const onPressContinue= async()=>{
-  try {
-    const {data:{data:{accessToken}}} = await phone_login({
+
+  if(route.params.signUpMethod=='google'){
+    try {
+      // const {data:{data:{accessToken}}} = await user_google_login({
+      //   mobile:phoneNumber
+      // })
+      const data = await user_google_login({
+        mobile:phoneNumber
+      })
+      console.log("hiiii",data.status)
+   
+      if(phoneNumber&&data.status=='200')
+      navigation.navigate('OtpLogin')
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+  if(route.params.signUpMethod=='mobile'){
+ try {
+    const {data:{data:{accessToken}}} = await login({
+      signUpMethod,
       mobile:phoneNumber
     })
     AsyncStorage.setItem('AccessToken', JSON.stringify(accessToken), (err)=> {
@@ -64,6 +81,8 @@ const onPressContinue= async()=>{
   } catch (error) {
     console.error("Error:", error);
   }
+  }
+ 
   
     
   
