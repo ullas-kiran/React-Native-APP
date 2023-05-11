@@ -7,9 +7,13 @@ const DateOfBirth = ({navigation}) => {
     const [date, setDate] = useState(new Date())
     const [open, setOpen] = useState(true)
     console.log('date',date)
+    const onPressContinue = () => {
+      navigation.navigate('Gender')
+    };
   return (
     <View style={styles.container}>
       <View style={{flex:1,justifyContent:'center'}}>
+      <Text style={{  fontSize: 20,fontWeight: 'bold',textAlign:'center',color:'black'}}>My Birth Day</Text>
      <Pressable  style={[{alignItems:'center',justifyContent:'center',margin:10}]} onPress={()=>setOpen(!open)}>
     <TextInput  value={date.toDateString()} />
       </Pressable>
@@ -28,7 +32,7 @@ const DateOfBirth = ({navigation}) => {
         }}
       />
       <TouchableOpacity style={styles.button}  >
-      <Text style={{fontSize:20}}>Continue</Text>
+      <Text style={{fontSize:20}}  onPress={onPressContinue}>Continue</Text>
       </TouchableOpacity>
     </View>
   )

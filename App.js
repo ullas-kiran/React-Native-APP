@@ -10,7 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UserName from './src/Screens/UserDetailsForm/UserName';
 import DateOfBirth from './src/Screens/UserDetailsForm/DateOfBirth';
-
+import Gender from './src/Screens/UserDetailsForm/Gender';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,6 +31,7 @@ function App() {
       <Stack.Screen   options={stackStyle} name="OtpLogin" component={OtpLogin} />
       <Stack.Screen   options={stackStyle} name="UserName" component={UserName} />
       <Stack.Screen   options={stackStyle} name="DateOfBirth" component={DateOfBirth} />
+      <Stack.Screen   options={stackStyle} name="Gender" component={Gender} />
       <Stack.Screen   options={stackStyle}  name="Home" component={Home} />
     </Stack.Navigator>
   </NavigationContainer>
