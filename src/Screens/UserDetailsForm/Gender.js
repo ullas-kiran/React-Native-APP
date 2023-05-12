@@ -1,8 +1,15 @@
 import { View, Text,StyleSheet,Button,TouchableOpacity,TextInput,Pressable,Image } from 'react-native'
 import {useState} from 'react'
-const Gender = () => {
 
-  const [selectedGender,setSelectedGender]=useState("");
+
+
+const Gender = ({navigation}) => {
+
+  const [selectedGender,setSelectedGender]=useState('male');
+
+  const onPressContinue = () => {
+    navigation.navigate('UserIntrest')
+  };
 
   const handleClick=(gender)=>{
     setSelectedGender(gender)
@@ -35,7 +42,7 @@ const Gender = () => {
               </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}  >
-      <Text style={{fontSize:20}}  >Continue</Text>
+      <Text style={{fontSize:20}} onPress={onPressContinue} >Continue</Text>
       </TouchableOpacity>
     </View>
   )
