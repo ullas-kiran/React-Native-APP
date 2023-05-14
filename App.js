@@ -12,6 +12,7 @@ import UserName from './src/Screens/UserDetailsForm/UserName';
 import DateOfBirth from './src/Screens/UserDetailsForm/DateOfBirth';
 import Gender from './src/Screens/UserDetailsForm/Gender';
 import UserIntrest from './src/Screens/UserDetailsForm/UserIntrest';
+import UploadImage from './src/Screens/UserDetailsForm/UploadImage';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,7 @@ function App() {
       <Stack.Screen   options={stackStyle} name="DateOfBirth" component={DateOfBirth} />
       <Stack.Screen   options={stackStyle} name="Gender" component={Gender} />
       <Stack.Screen   options={stackStyle} name="UserIntrest" component={UserIntrest} />
+      <Stack.Screen   options={stackStyle} name="UploadImage" component={UploadImage} />
       <Stack.Screen   options={stackStyle}  name="Home" component={Home} />
     </Stack.Navigator>
   </NavigationContainer>

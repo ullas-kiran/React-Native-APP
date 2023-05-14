@@ -2,7 +2,7 @@ import { View, Text,StyleSheet,Button,TouchableOpacity,TextInput,Pressable,Image
 import {useState} from 'react'
 
 
-const values=['column', 'row', 'row-reverse', 'column-reverse']
+const userIntrests=['Pets', 'Gardening', 'Coding', 'Yoga','Traveling','Photography','Cooking','Reading','Shopping','Sports','Music','Arts','Gaming']
 
 
   const Item = ({title}) => (
@@ -12,16 +12,19 @@ const values=['column', 'row', 'row-reverse', 'column-reverse']
   );
 
 const UserIntrest = ({navigation}) => {
-    const [filterData,setFilterData]=useState([])
+    const [filterData,setFilterData]=useState(userIntrests)
+    const [selectedValue, setSelectedValue] = useState('Pets');
+
     const onPressContinue = () => {
-     
+      navigation.navigate('UploadImage')
       };
+      
   return (
     <SafeAreaView style={styles.container}>
-    <TextInput
+    {/* <TextInput
           
           style={styles.searchBar}
-    />
+    /> */}
     {/* <FlatList
       data={DATA}
       renderItem={({item}) => <Item title={item.title} />}
@@ -29,21 +32,24 @@ const UserIntrest = ({navigation}) => {
       numColumns={2}
     /> */}
      <View style={styles.row}>
-      {values.map(value => (
+      {userIntrests.map(value => (
         <TouchableOpacity
           key={value}
           onPress={() => setSelectedValue(value)}
-          style={[styles.button]}>
+          style={[styles.button, selectedValue === value && styles.selected]}>
           <Text
             style={[
-              styles.buttonLabel,
-             
+              styles.buttonLabel,  
+              selectedValue === value && {color:'black'}
             ]}>
             {value}
           </Text>
         </TouchableOpacity>
       ))}
     </View>
+    <TouchableOpacity style={styles.continuebutton}  >
+      <Text style={{fontSize:20}}  onPress={onPressContinue}>Continue</Text>
+      </TouchableOpacity>
   </SafeAreaView>
   )
 }
@@ -82,13 +88,30 @@ const styles = StyleSheet.create({
       button: {
         paddingHorizontal: 8,
         paddingVertical: 6,
-        borderRadius: 4,
-        backgroundColor: 'oldlace',
-        alignSelf: 'flex-start',
-        marginHorizontal: '1%',
+        borderRadius: 10,
+        margin:'5%',
+        color:'black',
+        backgroundColor: '#E8E6EA',
+        alignItems:'center',
         marginBottom: 6,
-        minWidth: '48%',
+        minWidth: '40%',
+        minHeight:'9%',
         textAlign: 'center',
+        justifyContent:'center',
+        shadowColor: '#171717',
+        shadowOffset: {width: -2, height: 4},
+        shadowOpacity: 0.2,
+        shadowRadius: 3,
+      },
+      continuebutton: {
+        alignItems: 'center',
+        borderRadius:10,
+        backgroundColor: '#D2576D',
+        width:'50%',
+        alignSelf:'center',
+        paddingVertical:10,
+       justifyContent:'center',
+        margin:10
       },
       selected: {
         backgroundColor: 'coral',
