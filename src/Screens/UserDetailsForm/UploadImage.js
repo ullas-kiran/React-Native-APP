@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet,Button,TouchableOpacity,TextInput,Pressable,Image, FlatList, SafeAreaView } from 'react-native'
+import { View, Text,StyleSheet,Button,TouchableOpacity,TextInput,Pressable,Image, FlatList, SafeAreaView,TouchableHighlight } from 'react-native'
 import {useState} from 'react'
 import {launchCamera, launchImageLibrary} from 'react-native-image-picker';
 const UploadImage = ({navigation}) => {
@@ -44,16 +44,31 @@ const UploadImage = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <TouchableHighlight onPress={()=>uploadImage()} underlayColor="#00ffff" style={{backgroundColor:'red',margin:20,borderRadius:10}}>
       <Image
           style={{alignSelf:'center',width: 200,height: 200,}}
-          
           source={{uri:'data:image/png;base64,' + picture}}
           />
+          </TouchableHighlight>
           <Text style={styles.heading}>Upload Profile</Text>
           {/* <Text style={styles.paragraph}>UploadImage</Text> */}
           <View style={[{flexDirection:'row',justifyContent:'center',alignItems:'center',columnGap:5}]}>
             <Button  title="Upload" onPress={()=>uploadImage()}/>
             <Button  title="Remove" onPress={()=>removeImage()} />
+          </View>
+          <View style={[{flexDirection:'row',justifyContent:'space-between',alignItems:'center',paddingHorizontal:10,marginTop:'20%'}]}>
+          <Image
+          style={{width: 100,height: 100,backgroundColor:'red'}}
+          source={{uri:'data:image/png;base64,' + picture}}
+          /> 
+            <Image
+          style={{width: 100,height: 100,backgroundColor:'red'}}
+          source={{uri:'data:image/png;base64,' + picture}}
+          />
+            <Image
+          style={{width: 100,height: 100,backgroundColor:'red'}}
+          source={{uri:'data:image/png;base64,' + picture}}
+          />
           </View>
           <TouchableOpacity style={styles.continuebutton}  >
       <Text style={{fontSize:20}}  onPress={onPressContinue}>Continue</Text>
@@ -84,7 +99,8 @@ const styles = StyleSheet.create({
         alignSelf:'center',
         paddingVertical:10,
        justifyContent:'center',
-        margin:10
+        margin:10,
+        marginTop:'20%'
       },
     })
 
