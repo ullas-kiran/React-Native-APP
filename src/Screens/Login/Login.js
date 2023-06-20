@@ -76,13 +76,15 @@ const Login = ({navigation}) => {
   
     <View style={{flex:1}} >
       <Text style={styles.titleText}>Continue With</Text>
-      <LoginIcon  width={100} height={100} />
-      <TouchableOpacity style={[styles.button,{marginTop:300}]} onPress={getUser}>
-        <Text style={{fontSize:20}}><GoogleIcon height={30} alignItems='center' alignSelf='center' width={10} /> Login With Google</Text>
+      <View style={{alignItems:'center',}}>
+      <LoginIcon  width={300} height={300} />
+      </View>
+      <TouchableOpacity style={[styles.button,{marginTop:40}]} onPress={getUser}>
+        <Text style={{fontSize:20}}><GoogleIcon  height={30}  /> Login With Google</Text>
       </TouchableOpacity>
       <Text style={{textAlign:'center'}}>OR</Text>
       <TouchableOpacity style={[styles.button]} onPress={onPress}>
-      <Text style={{fontSize:20}}><PhoneIcon height={10} /> Login With Number</Text>
+      <Text style={{fontSize:20}}><PhoneIcon height={30}/> Login With Number</Text>
       </TouchableOpacity>
       </View>
   
@@ -111,7 +113,6 @@ const styles = StyleSheet.create({
     borderRadius:30,
     color:'red',
     backgroundColor: '#FFFFFF99',
-    // paddingHorizontal:30,
     marginHorizontal:40,
     paddingVertical:10,
    justifyContent:'center',
