@@ -1,19 +1,18 @@
 import { useState,useEffect } from 'react';
 import { View, Text,StyleSheet,Image,TouchableOpacity,ActivityIndicator,Linking } from 'react-native'
-import LinearGradient from 'react-native-linear-gradient';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
-import {GoogleAuthProvider, signInWithCredential,getAuth} from 'firebase/auth'
-import { initializeApp } from "firebase/app";
+
 import { login} from '../../Api/user_api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 GoogleSignin.configure({
   webClientId: '843672720732-qi6grqq67ds7gp0imjhqhtgtu8s6la4m.apps.googleusercontent.com',
 });
 
-
-
+import LoginIcon from '../../Assets/svg/login.svg'
+import GoogleIcon from '../../Assets/svg/google.svg'
+import PhoneIcon from '../../Assets/svg/phone.svg'
 const Login = ({navigation}) => {
 
 
@@ -74,31 +73,19 @@ const Login = ({navigation}) => {
 }
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center'}}>
-     {isLoading?<ActivityIndicator />: <LinearGradient style={{flex:1,justifyContent:'center'}}   locations={[100,100,0.6]} colors={['#C6B6EA', '#F5C9D9', '#FF72B638']} >
- 
-
-       <Image
-        style={{width: 40, height: 40,alignSelf:'center'}}
-      source={require('../../Assets/Images/loginLove.png')}
-      />
-      <Text style={styles.titleText}>Lets Chat</Text>
-      {/* <Text numberOfLines={5} style={styles.titleParagraph}>People with same intrest will match Here with our algorithm</Text> */}
   
-      <Image
-        style={{width: 150, height: 150,marginLeft:'30%'}}
-      source={require('../../Assets/Images/loginloveLetter.png')}
-      />
+    <View style={{flex:1}} >
+      <Text style={styles.titleText}>Continue With</Text>
+      <LoginIcon  width={100} height={100} />
       <TouchableOpacity style={[styles.button,{marginTop:300}]} onPress={getUser}>
-        <Text style={{fontSize:20}}><Icon name="google" size={30} color="#900"  /> Login With Google</Text>
+        <Text style={{fontSize:20}}><GoogleIcon height={30} alignItems='center' alignSelf='center' width={10} /> Login With Google</Text>
       </TouchableOpacity>
+      <Text style={{textAlign:'center'}}>OR</Text>
       <TouchableOpacity style={[styles.button]} onPress={onPress}>
-      <Text style={{fontSize:20}}><Icon name='phone'style={{margin:10}} size={30} color="#900"  /> Login With Number</Text>
+      <Text style={{fontSize:20}}><PhoneIcon height={10} /> Login With Number</Text>
       </TouchableOpacity>
-
+      </View>
   
-      </LinearGradient>}
-    </View>
   )
 }
 
@@ -112,18 +99,21 @@ const styles = StyleSheet.create({
     textAlign:'center',
     fontSize: 50,
     color:'black',
-    fontWeight: 'bold',
+    marginVertical:40
   },
   titleParagraph:{
     textAlign:'center',
-    padding:30    
+    fontSize:20,
+    // padding:30    
   },
   button: {
     alignItems: 'center',
-    borderRadius:10,
-    backgroundColor: '#D2576D',
-    paddingHorizontal:50,
-    paddingVertical:20,
+    borderRadius:30,
+    color:'red',
+    backgroundColor: '#FFFFFF99',
+    // paddingHorizontal:30,
+    marginHorizontal:40,
+    paddingVertical:10,
    justifyContent:'center',
     margin:10
   },
