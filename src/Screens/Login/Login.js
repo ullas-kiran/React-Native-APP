@@ -74,7 +74,7 @@ const Login = ({navigation}) => {
 
   return (
   
-    <View style={{flex:1}} >
+    <View style={styles.container} >
       <Text style={styles.titleText}>Continue With</Text>
       <View style={{alignItems:'center',}}>
       <LoginIcon  width={300} height={300} />
@@ -93,7 +93,10 @@ const Login = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
-
+  container:{
+   flex:1,
+   backgroundColor:'#F5F5F5'
+  },
   baseText: {
     fontFamily: 'Cochin',
   },
