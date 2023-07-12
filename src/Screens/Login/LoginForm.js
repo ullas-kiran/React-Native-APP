@@ -1,4 +1,4 @@
-import { View, Text,StyleSheet,Image,TouchableOpacity,TextInput,Modal,KeyboardAvoidingView, SafeAreaView, FlatList, TouchableWithoutFeedback } from 'react-native'
+import { View, Text,StyleSheet,ScrollView,KeyboardAvoidingView, SafeAreaView,Platform,FlatList,Keyboard ,TouchableWithoutFeedback,Image } from 'react-native'
 import { useState,useEffect, useRef } from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import { Dimensions } from 'react-native';
@@ -80,20 +80,32 @@ const onPressContinue= async()=>{
     
 
   return (
-   <View style={styles.container}>
+ 
+    <ScrollView style={{flex:1}}    keyboardShouldPersistTaps="always">
+     
+      <>
     <Text style={styles.heading}>Your Phone Number </Text>
     <View style={{justifyContent:'center',alignItems:'center'}}>
-      <YourPhone/>
+    <Image
+        style={styles.tinyLogo}
+        source={require('../../Assets/Images/png/updatemobile.png')}
+      />
     </View>
+    <KeyboardAvoidingView
+   behavior={'height'}
+   style={styles.container}>
     <CustomInput/> 
-   </View>
+    </KeyboardAvoidingView>
+    </>
+    </ScrollView>
+
   )
 }
 
 const styles = StyleSheet.create({
    container:{
        flex:1,
-       backgroundColor:'#F5F5F5'
+      //  backgroundColor:'red',
    },
    heading:{
     color:'black',
@@ -101,7 +113,10 @@ const styles = StyleSheet.create({
     fontSize: 50,
     color:'black',
     marginVertical:40
-   }
+   },
+   tinyLogo: {
+    width: '90%',
+  },
  
   
   });
