@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const ApiManager=axios.create({
-    baseURL:'https://vingle-taupe.vercel.app',
+    baseURL:'https://hyfyserver.vercel.app',
     responseType:'json',
     withCredentials:true
 })

@@ -6,6 +6,9 @@ import { login,user_google_login } from '../../Api/user_api';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import YourPhone from "../../Assets/svg/yourPhone.svg"
 import CustomInput from '../../Component/Common/CustomInput';
+import { Formik } from 'formik';
+import * as Yup from 'yup';
+import DefaultButton from '../../Component/Common/CustomButton/DefaultButton';
 const Countries= [{
   "name": "Afghanistan",
   "dial_code": "+93",
@@ -27,9 +30,13 @@ const LoginForm = ({ route, navigation}) => {
  const { signUpMethod } = route.params;
  const [phoneNumber,setPhoneNumber]=useState()
 
+ const loginFormSchema = Yup.object().shape({
+  phone: Yup.string().required('phone required'),
+});
 
 
-const onPressContinue= async()=>{
+
+const FormSubmit= async(values, resetForm)=>{
 
   if(route.params.signUpMethod=='google'){
     try {
@@ -37,7 +44,7 @@ const onPressContinue= async()=>{
       //   mobile:phoneNumber
       // })
       const data = await user_google_login({
-        mobile:phoneNumber
+        mobile:values.phone
       })
       console.log("hiiii",data.status)
    
@@ -51,7 +58,7 @@ const onPressContinue= async()=>{
  try {
     const {data:{data:{accessToken}}} = await login({
       signUpMethod,
-      mobile:phoneNumber
+      mobile:values.phone
     })
     AsyncStorage.setItem('AccessToken', JSON.stringify(accessToken), (err)=> {
       if(err){
@@ -62,8 +69,9 @@ const onPressContinue= async()=>{
   }).catch((err)=> {
       console.log("error is: " + err);
   });
-    if(phoneNumber)
+    if(values.phone)
     navigation.navigate('OtpLogin')
+
   } catch (error) {
     console.error("Error:", error);
   }
@@ -76,14 +84,15 @@ const onPressContinue= async()=>{
 
 
 
-
+// const FormSubmit = (values, resetForm) => {
+// console.log("values",values.phone)
+// };
     
 
   return (
  
-    <ScrollView style={{flex:1}}    keyboardShouldPersistTaps="always">
-     
-      <>
+    <ScrollView style={{flex:1}} >  
+    {/* <View> */}
     <Text style={styles.heading}>Your Phone Number </Text>
     <View style={{justifyContent:'center',alignItems:'center'}}>
     <Image
@@ -92,11 +101,34 @@ const onPressContinue= async()=>{
       />
     </View>
     <KeyboardAvoidingView
-   behavior={'height'}
+   behavior={'paading'}
    style={styles.container}>
-    <CustomInput/> 
+      <Formik
+            initialValues={{
+              phone: '',
+            }}
+            validationSchema={loginFormSchema}
+            onSubmit={(values, {resetForm}) => FormSubmit(values, resetForm)}
+            >
+            {({values, errors, handleChange, setFieldValue, handleSubmit}) => (
+              <>
+                 <CustomInput 
+                   value={values.phone}
+                  error={errors.phone} 
+                   onChangeText={handleChange('phone')}
+                  placeHolder="Enter Phone"
+                  keyboardType="numeric"
+                      /> 
+                  <DefaultButton   style={{
+             button: {
+              marginVertical: 30,
+             },
+            }} onPress={handleSubmit}  label="Login"/>
+              </>
+            )}
+          </Formik>
     </KeyboardAvoidingView>
-    </>
+    {/* </View> */}
     </ScrollView>
 
   )
@@ -105,7 +137,6 @@ const onPressContinue= async()=>{
 const styles = StyleSheet.create({
    container:{
        flex:1,
-      //  backgroundColor:'red',
    },
    heading:{
     color:'black',
