@@ -3,7 +3,7 @@ import { StyleSheet, Text, View,TextInput } from 'react-native'
 import { GlobalSize } from '../../../Utils/constants'
 import { Fonts } from '../../../Utils/fonts'
 
-const CustomInput = ({value,error,keyboardType,onChangeText,style,...rest}) => {
+const CustomInput = ({value,error,keyboardType,onChangeText,placeHolder,style,...rest}) => {
   return (
     <View>
     <TextInput
@@ -11,7 +11,7 @@ const CustomInput = ({value,error,keyboardType,onChangeText,style,...rest}) => {
     onChangeText={onChangeText}
     value={value}
     keyboardType={keyboardType ?? 'default'}
-    placeholder='phone number'
+    placeholder={placeHolder}
     {...rest}
   />
   {error && <Text style={[styles.error, style?.errorLabel]}>{error}</Text>}

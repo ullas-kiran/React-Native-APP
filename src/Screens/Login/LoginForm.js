@@ -119,11 +119,11 @@ const FormSubmit= async(values, resetForm)=>{
                   placeHolder="Enter Phone"
                   keyboardType="numeric"
                       /> 
-                  <DefaultButton   style={{
+            <DefaultButton   style={{
              button: {
               marginVertical: 30,
              },
-            }} onPress={handleSubmit}  label="Login"/>
+            }} onPress={handleSubmit}  label="Next"/>
               </>
             )}
           </Formik>
